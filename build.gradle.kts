@@ -36,9 +36,19 @@ dependencies {
     ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrow_version")
 
     detektPlugins("com.wolt.arrow.detekt:rules:0.4.0")
+    // for list, look at https://repo.maven.apache.org/maven2/io/gitlab/arturbosch/detekt
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-libraries:1.23.3")
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors:1.23.3")
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-complexity:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-coroutines:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-documentation:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-empty:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-exceptions:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-naming:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-performance:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-errorprone:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-style:1.23.3")
 }
 
 tasks {
@@ -123,6 +133,7 @@ tasks.withType<Detekt>().configureEach {
 }
 tasks.withType<Detekt>().configureEach {
     jvmTarget = "20"
+    // jdkHome.set(file("path/to/jdkHome"))
 }
 tasks.withType<DetektCreateBaselineTask>().configureEach {
     jvmTarget = "20"
