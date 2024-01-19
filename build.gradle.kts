@@ -32,6 +32,11 @@ dependencies {
     implementation("io.arrow-kt:arrow-fx-coroutines")
     implementation("io.arrow-kt:arrow-optics")
 
+    // https://kotest.io/docs/quickstart
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.7.2")
+    testImplementation("io.kotest:kotest-runner-junit5:5.7.2")
+    testImplementation("io.kotest:kotest-property:5.7.2")
+    // https://kotlinlang.org/api/latest/kotlin.test/
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
     ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion")
@@ -60,6 +65,9 @@ tasks {
     // This ensures that detektMail (https://detekt.dev/docs/gettingstarted/type-resolution/) is run
     named("compileKotlin") {
         finalizedBy("detektMain")
+    }
+    named("compileTestKotlin") {
+        finalizedBy("detektTest")
     }
 }
 
