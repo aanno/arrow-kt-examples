@@ -4,6 +4,7 @@ import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
     // https://github.com/JLLeitschuh/ktlint-gradle
+    // https://pinterest.github.io/ktlint/latest/
     // id("org.jlleitschuh.gradle.ktlint-idea") version "11.6.1"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
 
@@ -14,7 +15,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.23.3"
 }
 
-val arrow_version: String by properties
+val arrowVersion: String by properties
 
 group = "com.github.aanno.arrowkt"
 version = "1.0-SNAPSHOT"
@@ -26,14 +27,14 @@ repositories {
 dependencies {
     // api(kotlin("stdlib"))
 
-    implementation(platform("io.arrow-kt:arrow-stack:$arrow_version"))
+    implementation(platform("io.arrow-kt:arrow-stack:$arrowVersion"))
     implementation("io.arrow-kt:arrow-core")
     implementation("io.arrow-kt:arrow-fx-coroutines")
     implementation("io.arrow-kt:arrow-optics")
-    
+
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
-    ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrow_version")
+    ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion")
 
     detektPlugins("com.wolt.arrow.detekt:rules:0.4.0")
     // for list, look at https://repo.maven.apache.org/maven2/io/gitlab/arturbosch/detekt
@@ -70,6 +71,8 @@ ktlint {
     reporters {
         reporter(ReporterType.CHECKSTYLE)
         reporter(ReporterType.PLAIN)
+        reporter(ReporterType.HTML)
+        reporter(ReporterType.SARIF)
     }
     /*
     disabledRules.set(
