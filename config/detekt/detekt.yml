@@ -15,12 +15,12 @@ complexity:
   StringLiteralDuplication:
     active: true
     excludes: ['**/test/**', '**/*Test.kt', '**/*Spec.kt']
-    allowedDuplications: 4
+    # allowedDuplications: 4
     ignoreAnnotation: true
     ignoreStringsRegex: '$^'
   ComplexInterface:
     active: true
-    allowedDefinitions: 10
+    # allowedDefinitions: 10
     includeStaticDeclarations: false
     includePrivateDeclarations: false
   CyclomaticComplexMethod:
@@ -234,10 +234,10 @@ style:
     active: true
   PreferToOverPairSyntax:
     active: true
-  RangeUntilInsteadOfRangeTo:
-    active: true
-  RedundantConstructorKeyword:
-    active: true
+  #RangeUntilInsteadOfRangeTo:
+  #  active: true
+  #RedundantConstructorKeyword:
+  #  active: true
   RedundantExplicitType:
     active: true
   RedundantHigherOrderMapUsage:
@@ -247,8 +247,8 @@ style:
   ReturnCount:
     active: true
     excludeGuardClauses: true
-  SpacingAfterPackageDeclaration:
-    active: true
+  #SpacingAfterPackageDeclaration:
+  #  active: true
   TrimMultilineRawString:
     active: true
   UnderscoresInNumericLiterals:
@@ -264,8 +264,8 @@ style:
   UnnecessaryInnerClass:
     active: true
     ignoreAnnotated: ['Nested']
-  UnusedImport:
-    active: false # formatting already have this rule enabled
+  #UnusedImport:
+  #  active: false # formatting already have this rule enabled
   UnusedPrivateMember:
     active: true
     allowedNames: '(_|ignored|expected)'

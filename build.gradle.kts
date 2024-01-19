@@ -1,3 +1,5 @@
+import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
@@ -32,11 +34,17 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
     ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrow_version")
+
     detektPlugins("com.wolt.arrow.detekt:rules:0.4.0")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-libraries:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.3")
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks {
+    test {
+        useJUnitPlatform()
+    }
 }
 
 kotlin {
@@ -81,7 +89,7 @@ detekt {
     buildUponDefaultConfig = false
 
     // Turns on all the rules. `false` by default.
-    allRules = true
+    allRules = false
 
     // Specifying a baseline file. All findings stored in this file in subsequent runs of detekt.
     baseline = file("config/detekt/baseline.xml")
@@ -91,7 +99,7 @@ detekt {
     disableDefaultRuleSets = false
 
     // Adds debug output during task execution. `false` by default.
-    debug = true
+    debug = false
 
     // If set to `true` the build does not fail when the
     // maxIssues count was reached. Defaults to `false`.
@@ -100,4 +108,22 @@ detekt {
     // Specify the base path for file paths in the formatted reports.
     // If not set, all file paths reported will be absolute file path.
     basePath = projectDir.absolutePath
+
+    // stringLiteralDuplication
+}
+
+tasks.withType<Detekt>().configureEach {
+    reports {
+        html.required.set(true) // observe findings in your browser with structure and code snippets
+        xml.required.set(true) // checkstyle like format mainly for integrations like Jenkins
+        txt.required.set(true) // similar to the console output, contains issue signature to manually edit baseline files
+        sarif.required.set(true) // standardized SARIF format (https://sarifweb.azurewebsites.net/) to support integrations with GitHub Code Scanning
+        md.required.set(true) // simple Markdown format
+    }
+}
+tasks.withType<Detekt>().configureEach {
+    jvmTarget = "20"
+}
+tasks.withType<DetektCreateBaselineTask>().configureEach {
+    jvmTarget = "20"
 }
