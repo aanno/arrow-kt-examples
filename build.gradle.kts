@@ -69,10 +69,12 @@ tasks {
     test {
         useJUnitPlatform()
     }
-    // This ensures that detektMail (https://detekt.dev/docs/gettingstarted/type-resolution/) is run
+    
+    // This ensures that detektMain (https://detekt.dev/docs/gettingstarted/type-resolution/) is run
     named("compileKotlin") {
         finalizedBy("detektMain")
     }
+    // This ensures that detektTest
     named("compileTestKotlin") {
         finalizedBy("detektTest")
     }
