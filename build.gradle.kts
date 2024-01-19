@@ -62,7 +62,7 @@ detekt {
 
     // Define the detekt configuration(s) you want to use.
     // Defaults to the default detekt configuration.
-    config.setFrom("detekt/config.yml")
+    config.setFrom("config/detekt/detekt.yml")
 
     // Applies the config files on top of detekt's default config file. `false` by default.
     buildUponDefaultConfig = false
@@ -71,7 +71,7 @@ detekt {
     allRules = false
 
     // Specifying a baseline file. All findings stored in this file in subsequent runs of detekt.
-    baseline = file("detekt/baseline.xml")
+    baseline = file("config/detekt/baseline.xml")
 
     // Disables all default detekt rulesets and will only run detekt with custom rules
     // defined in plugins passed in with `detektPlugins` configuration. `false` by default.
