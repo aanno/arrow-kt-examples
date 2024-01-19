@@ -1,4 +1,8 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
+    // https://github.com/JLLeitschuh/ktlint-gradle
+    // id("org.jlleitschuh.gradle.ktlint-idea") version "11.6.1"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
 
     kotlin("jvm") version "1.9.22"
@@ -42,6 +46,14 @@ kotlin {
 
 ktlint {
     verbose.set(true)
+    outputToConsole.set(true)
+    coloredOutput.set(true)
+    baseline.set(file("config/ktlint/baseline.xml"))
+    reporters {
+        reporter(ReporterType.CHECKSTYLE)
+        reporter(ReporterType.PLAIN)
+    }
+    /*
     disabledRules.set(
         setOf(
             "comment-spacing",
@@ -53,6 +65,7 @@ ktlint {
             "standard:property-naming"
         )
     )
+     */
 }
 
 detekt {
@@ -68,7 +81,7 @@ detekt {
     buildUponDefaultConfig = false
 
     // Turns on all the rules. `false` by default.
-    allRules = false
+    allRules = true
 
     // Specifying a baseline file. All findings stored in this file in subsequent runs of detekt.
     baseline = file("config/detekt/baseline.xml")
@@ -78,7 +91,7 @@ detekt {
     disableDefaultRuleSets = false
 
     // Adds debug output during task execution. `false` by default.
-    debug = false
+    debug = true
 
     // If set to `true` the build does not fail when the
     // maxIssues count was reached. Defaults to `false`.
