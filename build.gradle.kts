@@ -17,12 +17,15 @@ plugins {
 }
 
 val arrowVersion: String by properties
+val inikioVersion: String by properties
 
 group = "com.github.aanno.arrowkt"
 version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    // inikio
+    maven(url = "https://jitpack.io")
 }
 
 dependencies {
@@ -41,6 +44,9 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
     ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion")
+
+    implementation("com.github.serras.inikio:inikio-core:$inikioVersion")
+    ksp("com.github.serras.inikio:inikio-ksp:$inikioVersion")
 
     // https://github.com/woltapp/arrow-detekt-rules
     detektPlugins("com.wolt.arrow.detekt:rules:0.4.0")
@@ -81,6 +87,13 @@ tasks {
 kotlin {
     // should be 21 but detekt supports only 20 (tp)
     jvmToolchain(20)
+    // https://kotlinlang.org/docs/ksp-quickstart.html#make-ide-aware-of-generated-code
+    sourceSets.main {
+        kotlin.srcDir("build/generated/ksp/main/kotlin")
+    }
+    sourceSets.test {
+        kotlin.srcDir("build/generated/ksp/test/kotlin")
+    }
 }
 
 // https://github.com/JLLeitschuh/ktlint-gradle
@@ -156,6 +169,13 @@ tasks.withType<Detekt>().configureEach {
 tasks.withType<Detekt>().configureEach {
     jvmTarget = "20"
     // jdkHome.set(file("path/to/jdkHome"))
+    // exclude ksp generated code (inikio)
+    val mainKotlin = fileTree("src/main/kotlin").include("**/*.kt", "**/*.kts")
+    val testKotlin = fileTree("src/test/kotlin").include("**/*.kt", "**/*.kts")
+    // replace
+    setSource(mainKotlin)
+    // add
+    source(testKotlin)
 }
 tasks.withType<DetektCreateBaselineTask>().configureEach {
     jvmTarget = "20"

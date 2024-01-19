@@ -1,8 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <baseline version="1.0">
-    <file name="build.gradle.kts">
-        <error line="135" column="1" source="standard:max-line-length" />
-        <error line="135" column="28" source="standard:argument-list-wrapping" />
-        <error line="135" column="32" source="standard:argument-list-wrapping" />
+    <file name="build/generated/ksp/main/kotlin/com/github/aanno/arrowkt/CasinoBuilder.kt">
+        <error line="6" column="42" source="standard:wrapping" />
+        <error line="6" column="42" source="standard:wrapping" />
+        <error line="6" column="43" source="standard:statement-wrapping" />
+        <error line="7" column="1" source="standard:indent" />
+        <error line="7" column="53" source="standard:multiline-expression-wrapping" />
+        <error line="7" column="53" source="standard:function-signature" />
+        <error line="8" column="1" source="standard:indent" />
+        <error line="8" column="45" source="standard:wrapping" />
+        <error line="8" column="45" source="standard:wrapping" />
+        <error line="8" column="46" source="standard:statement-wrapping" />
+        <error line="11" column="76" source="standard:function-signature" />
+    </file>
+    <file name="src/main/kotlin/com/github/aanno/arrowkt/InikioCasino.kt">
+        <error line="7" column="1" source="standard:blank-line-before-declaration" />
+        <error line="7" column="38" source="standard:colon-spacing" />
+        <error line="8" column="1" source="standard:blank-line-before-declaration" />
+        <error line="8" column="61" source="standard:colon-spacing" />
+    </file>
+    <file name="src/test/kotlin/com/github/aanno/arrowkt/ArrowTypedErrorContextReceiver.kt">
+        <error line="11" column="27" source="standard:function-signature" />
+        <error line="19" column="1" source="standard:no-consecutive-blank-lines" />
+        <error line="25" column="41" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/test/kotlin/com/github/aanno/arrowkt/ArrowTypedErrorExtensionReceiver.kt">
+        <error line="6" column="1" source="standard:no-unused-imports" />
+        <error line="20" column="91" source="standard:trailing-comma-on-call-site" />
+        <error line="27" column="49" source="standard:trailing-comma-on-call-site" />
+    </file>
+    <file name="src/test/kotlin/com/github/aanno/arrowkt/ArrowTypedErrorInValue.kt">
+        <error line="12" column="50" source="standard:multiline-expression-wrapping" />
+        <error line="12" column="50" source="standard:function-signature" />
+        <error line="16" column="56" source="standard:multiline-expression-wrapping" />
+        <error line="16" column="56" source="standard:function-signature" />
+        <error line="23" column="37" source="standard:no-multi-spaces" />
+    </file>
+    <file name="src/test/kotlin/com/github/aanno/arrowkt/InikioCasinoTest.kt">
+        <error line="3" column="1" source="standard:import-ordering" />
+        <error line="3" column="1" source="standard:no-unused-imports" />
+        <error line="4" column="1" source="standard:no-unused-imports" />
+        <error line="6" column="1" source="standard:no-unused-imports" />
+        <error line="7" column="1" source="standard:no-wildcard-imports" />
+        <error line="8" column="1" source="standard:no-wildcard-imports" />
+        <error line="14" column="26" source="standard:multiline-expression-wrapping" />
+        <error line="17" column="45" source="standard:multiline-if-else" />
+        <error line="17" column="45" source="standard:if-else-wrapping" />
+        <error line="18" column="18" source="standard:multiline-if-else" />
+        <error line="18" column="18" source="standard:if-else-wrapping" />
+    </file>
+    <file name="src/test/kotlin/com/github/aanno/arrowkt/UserModel.kt">
+        <error line="4" column="1" source="standard:blank-line-before-declaration" />
     </file>
 </baseline>

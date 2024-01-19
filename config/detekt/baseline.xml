@@ -2,14 +2,21 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>ArgumentListWrapping:build.gradle.kts$(true)</ID>
-    <ID>EmptyClassBlock:Test.kt$Test${ }</ID>
+    <ID>ImportOrdering:InikioCasinoTest.kt$import arrow.core.left import arrow.core.right import io.kotest.core.spec.style.ShouldSpec import io.kotest.matchers.shouldBe import com.github.aanno.arrowkt.FlipCoin.Outcome.* import com.github.aanno.arrowkt.Done.*</ID>
+    <ID>MagicNumber:ArrowDetektRules.kt$5</ID>
     <ID>MagicNumber:build.gradle.kts$20</ID>
-    <ID>MaxLineLength:build.gradle.kts$sarif.required.set(true)</ID>
-    <ID>MaxLineLength:build.gradle.kts$txt.required.set(true)</ID>
-    <ID>NoConsecutiveBlankLines:settings.gradle.kts$ </ID>
-    <ID>NoEmptyClassBody:Test.kt$Test${ }</ID>
-    <ID>NoTrailingSpaces:build.gradle.kts$ </ID>
-    <ID>VariableNaming:build.gradle.kts$val arrow_version: String by properties</ID>
+    <ID>MultiLineIfElse:InikioCasinoTest.kt$InikioCasinoTest$LOSE</ID>
+    <ID>MultiLineIfElse:InikioCasinoTest.kt$InikioCasinoTest$WIN</ID>
+    <ID>NoConsecutiveBlankLines:ArrowTypedErrorContextReceiver.kt$ </ID>
+    <ID>NoMultipleSpaces:ArrowTypedErrorInValue.kt$ArrowTypedErrorInValue$ </ID>
+    <ID>NoUnusedImports:ArrowTypedErrorExtensionReceiver.kt$com.github.aanno.arrowkt.ArrowTypedErrorExtensionReceiver.kt</ID>
+    <ID>NoUnusedImports:InikioCasinoTest.kt$com.github.aanno.arrowkt.InikioCasinoTest.kt</ID>
+    <ID>NoWildcardImports:InikioCasinoTest.kt$import com.github.aanno.arrowkt.Done.*</ID>
+    <ID>NoWildcardImports:InikioCasinoTest.kt$import com.github.aanno.arrowkt.FlipCoin.Outcome.*</ID>
+    <ID>SpacingAroundColon:InikioCasino.kt$Done$:</ID>
+    <ID>SpacingAroundColon:InikioCasino.kt$FlipCoin$:</ID>
+    <ID>UnusedPrivateProperty:InikioCasinoTest.kt$InikioCasinoTest$val doubleCoin = casino { val o1 = flipCoin() val o2 = flipCoin() if (o1 == HEADS &amp;&amp; o2 == HEADS) WIN else LOSE }</ID>
+    <ID>WildcardImport:InikioCasinoTest.kt$import com.github.aanno.arrowkt.Done.*</ID>
+    <ID>WildcardImport:InikioCasinoTest.kt$import com.github.aanno.arrowkt.FlipCoin.Outcome.*</ID>
   </CurrentIssues>
 </SmellBaseline>
