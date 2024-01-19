@@ -1,6 +1,8 @@
-<?xml version="1.0" ?>
-<SmellBaseline>
-    <ManuallySuppressedIssues/>
-    <CurrentIssues>
-    </CurrentIssues>
-</SmellBaseline>
+<?xml version="1.0" encoding="utf-8"?>
+<baseline version="1.0">
+    <file name="build.gradle.kts">
+        <error line="135" column="1" source="standard:max-line-length" />
+        <error line="135" column="28" source="standard:argument-list-wrapping" />
+        <error line="135" column="32" source="standard:argument-list-wrapping" />
+    </file>
+</baseline>

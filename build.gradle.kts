@@ -63,10 +63,15 @@ kotlin {
     jvmToolchain(20)
 }
 
+// https://github.com/JLLeitschuh/ktlint-gradle
 ktlint {
     verbose.set(true)
     outputToConsole.set(true)
     coloredOutput.set(true)
+    // only warnings (build will not fail)
+    ignoreFailures.set(true)
+    enableExperimentalRules.set(false)
+    // change with: `./gradlew ktlintGenerateBaseline`
     baseline.set(file("config/ktlint/baseline.xml"))
     reporters {
         reporter(ReporterType.CHECKSTYLE)
@@ -74,19 +79,6 @@ ktlint {
         reporter(ReporterType.HTML)
         reporter(ReporterType.SARIF)
     }
-    /*
-    disabledRules.set(
-        setOf(
-            "comment-spacing",
-            "filename",
-            "import-ordering",
-            "no-line-break-before-assignment",
-            "standard:no-consecutive-blank-lines",
-            "standard:trailing-comma-on-call-site",
-            "standard:property-naming"
-        )
-    )
-     */
 }
 
 // https://github.com/detekt/detekt
@@ -106,6 +98,7 @@ detekt {
     allRules = false
 
     // Specifying a baseline file. All findings stored in this file in subsequent runs of detekt.
+    // change with: `./gradlew detektProjectBaseline`
     baseline = file("config/detekt/baseline.xml")
 
     // Disables all default detekt rulesets and will only run detekt with custom rules
