@@ -86,6 +86,7 @@ ktlint {
      */
 }
 
+// https://github.com/detekt/detekt
 detekt {
     // Builds the AST in parallel. Rules are always executed in parallel.
     // Can lead to speedups in larger projects. `false` by default.
@@ -122,6 +123,7 @@ detekt {
     // stringLiteralDuplication
 }
 
+// https://detekt.dev/docs/gettingstarted/gradle/
 tasks.withType<Detekt>().configureEach {
     reports {
         html.required.set(true) // observe findings in your browser with structure and code snippets
@@ -137,4 +139,18 @@ tasks.withType<Detekt>().configureEach {
 }
 tasks.withType<DetektCreateBaselineTask>().configureEach {
     jvmTarget = "20"
+}
+// https://detekt.dev/docs/introduction/baseline
+val detektProjectBaseline by tasks.registering(DetektCreateBaselineTask::class) {
+    description = "Overrides current baseline."
+    buildUponDefaultConfig.set(true)
+    ignoreFailures.set(true)
+    parallel.set(true)
+    setSource(files(rootDir))
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+    baseline.set(file("$rootDir/config/detekt/baseline.xml"))
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("**/resources/**")
+    exclude("**/build/**")
 }

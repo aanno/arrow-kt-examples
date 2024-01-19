@@ -1,6 +1,15 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-    <ManuallySuppressedIssues/>
-    <CurrentIssues>
-    </CurrentIssues>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ArgumentListWrapping:build.gradle.kts$(true)</ID>
+    <ID>EmptyClassBlock:Test.kt$Test${ }</ID>
+    <ID>MagicNumber:build.gradle.kts$20</ID>
+    <ID>MaxLineLength:build.gradle.kts$sarif.required.set(true)</ID>
+    <ID>MaxLineLength:build.gradle.kts$txt.required.set(true)</ID>
+    <ID>NoConsecutiveBlankLines:settings.gradle.kts$ </ID>
+    <ID>NoEmptyClassBody:Test.kt$Test${ }</ID>
+    <ID>NoTrailingSpaces:build.gradle.kts$ </ID>
+    <ID>VariableNaming:build.gradle.kts$val arrow_version: String by properties</ID>
+  </CurrentIssues>
 </SmellBaseline>
