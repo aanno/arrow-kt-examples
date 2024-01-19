@@ -308,3 +308,8 @@ ruleauthors:
   ViolatesTypeResolutionRequirements:
     active: true
     excludes: ['**/test/**', '**/*Test.kt', '**/*Spec.kt']
+
+# https://github.com/woltapp/arrow-detekt-rules
+ArrowRuleSet:
+  NoEffectScopeBindableValueAsStatement:
+    active: true

@@ -36,6 +36,7 @@ dependencies {
 
     ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion")
 
+    // https://github.com/woltapp/arrow-detekt-rules
     detektPlugins("com.wolt.arrow.detekt:rules:0.4.0")
     // for list, look at https://repo.maven.apache.org/maven2/io/gitlab/arturbosch/detekt
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-libraries:1.23.3")
@@ -56,6 +57,10 @@ tasks {
     test {
         useJUnitPlatform()
     }
+    // This ensures that detektMail (https://detekt.dev/docs/gettingstarted/type-resolution/) is run
+    named("compileKotlin") {
+        finalizedBy("detektMain")
+    }
 }
 
 kotlin {
@@ -68,8 +73,8 @@ ktlint {
     verbose.set(true)
     outputToConsole.set(true)
     coloredOutput.set(true)
-    // only warnings (build will not fail)
-    ignoreFailures.set(true)
+    // if true, only warnings (build will not fail)
+    ignoreFailures.set(false)
     enableExperimentalRules.set(false)
     // change with: `./gradlew ktlintGenerateBaseline`
     baseline.set(file("config/ktlint/baseline.xml"))
@@ -99,6 +104,7 @@ detekt {
 
     // Specifying a baseline file. All findings stored in this file in subsequent runs of detekt.
     // change with: `./gradlew detektProjectBaseline`
+    // change with: `./gradlew detektBaselineMain`
     baseline = file("config/detekt/baseline.xml")
 
     // Disables all default detekt rulesets and will only run detekt with custom rules
@@ -115,18 +121,21 @@ detekt {
     // Specify the base path for file paths in the formatted reports.
     // If not set, all file paths reported will be absolute file path.
     basePath = projectDir.absolutePath
-
-    // stringLiteralDuplication
 }
 
 // https://detekt.dev/docs/gettingstarted/gradle/
 tasks.withType<Detekt>().configureEach {
     reports {
-        html.required.set(true) // observe findings in your browser with structure and code snippets
-        xml.required.set(true) // checkstyle like format mainly for integrations like Jenkins
-        txt.required.set(true) // similar to the console output, contains issue signature to manually edit baseline files
-        sarif.required.set(true) // standardized SARIF format (https://sarifweb.azurewebsites.net/) to support integrations with GitHub Code Scanning
-        md.required.set(true) // simple Markdown format
+        // observe findings in your browser with structure and code snippets
+        html.required.set(true)
+        // checkstyle like format mainly for integrations like Jenkins
+        xml.required.set(true)
+        // similar to the console output, contains issue signature to manually edit baseline files
+        txt.required.set(true)
+        // standardized SARIF format (https://sarifweb.azurewebsites.net/) to support integrations with GitHub Code Scanning
+        sarif.required.set(true)
+        // simple Markdown format
+        md.required.set(true)
     }
 }
 tasks.withType<Detekt>().configureEach {
