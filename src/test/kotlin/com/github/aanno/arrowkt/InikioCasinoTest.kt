@@ -1,11 +1,9 @@
 package com.github.aanno.arrowkt
 
-import arrow.core.left
-import arrow.core.right
+import com.github.aanno.arrowkt.Done.LOSE
+import com.github.aanno.arrowkt.Done.WIN
+import com.github.aanno.arrowkt.FlipCoin.Outcome.HEADS
 import io.kotest.core.spec.style.ShouldSpec
-import io.kotest.matchers.shouldBe
-import com.github.aanno.arrowkt.FlipCoin.Outcome.*
-import com.github.aanno.arrowkt.Done.*
 
 enum class Done { WIN, LOSE }
 

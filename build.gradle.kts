@@ -14,6 +14,12 @@ plugins {
     id("com.google.devtools.ksp") version "1.9.22-1.0.16"
     // https://detekt.dev/docs/gettingstarted/gradle/
     id("io.gitlab.arturbosch.detekt") version "1.23.3"
+    id("jvm-test-suite")
+    id("io.kotest") version "0.4.11"
+    // needs kotlin version 1.8.10 (1.8.x)
+    // id("io.arrow-kt.analysis.kotlin") version "2.0.2"
+    idea
+    wrapper
 }
 
 val arrowVersion: String by properties
@@ -26,6 +32,13 @@ repositories {
     mavenCentral()
     // inikio
     maven(url = "https://jitpack.io")
+}
+
+idea {
+    module {
+        setDownloadJavadoc(true)
+        setDownloadSources(true)
+    }
 }
 
 dependencies {
@@ -66,10 +79,15 @@ dependencies {
 }
 
 tasks {
+    wrapper {
+        distributionType = Wrapper.DistributionType.ALL
+        gradleVersion = "8.5"
+    }
+
     test {
         useJUnitPlatform()
     }
-    
+
     // This ensures that detektMain (https://detekt.dev/docs/gettingstarted/type-resolution/) is run
     named("compileKotlin") {
         finalizedBy("detektMain")
