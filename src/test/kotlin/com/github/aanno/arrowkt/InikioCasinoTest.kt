@@ -9,11 +9,15 @@ enum class Done { WIN, LOSE }
 
 class InikioCasinoTest : ShouldSpec({
     should("2 coins heads win") {
-        val doubleCoin = casino {
-            val o1 = flipCoin()
-            val o2 = flipCoin()
-            if (o1 == HEADS && o2 == HEADS) WIN
-            else LOSE
-        }
+        val doubleCoin =
+            casino {
+                val o1 = flipCoin()
+                val o2 = flipCoin()
+                if (o1 == HEADS && o2 == HEADS) {
+                    WIN
+                } else {
+                    LOSE
+                }
+            }
     }
 })

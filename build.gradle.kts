@@ -6,24 +6,23 @@ import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 plugins {
     // https://github.com/JLLeitschuh/ktlint-gradle
     // https://pinterest.github.io/ktlint/latest/
-    // id("org.jlleitschuh.gradle.ktlint-idea") version "11.6.1"
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
-
-    kotlin("jvm") version "1.9.22"
-    // 1.9.22-1.0.16
-    id("com.google.devtools.ksp") version "1.9.22-1.0.16"
-    // https://detekt.dev/docs/gettingstarted/gradle/
-    id("io.gitlab.arturbosch.detekt") version "1.23.3"
+    id("org.jlleitschuh.gradle.ktlint")
+    kotlin("jvm")
+    id("com.google.devtools.ksp")
+    id("io.gitlab.arturbosch.detekt")
     id("jvm-test-suite")
-    id("io.kotest") version "0.4.11"
+    id("io.kotest")
     // needs kotlin version 1.8.10 (1.8.x)
-    // id("io.arrow-kt.analysis.kotlin") version "2.0.2"
+    // id("io.arrow-kt.analysis.kotlin")
     idea
     wrapper
 }
 
 val arrowVersion: String by properties
+val arrowDetektVersion: String by properties
 val inikioVersion: String by properties
+val kotestVersion: String by properties
+val detektVersion: String by properties
 
 group = "com.github.aanno.arrowkt"
 version = "1.0-SNAPSHOT"
@@ -50,9 +49,9 @@ dependencies {
     implementation("io.arrow-kt:arrow-optics")
 
     // https://kotest.io/docs/quickstart
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.7.2")
-    testImplementation("io.kotest:kotest-runner-junit5:5.7.2")
-    testImplementation("io.kotest:kotest-property:5.7.2")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-property:$kotestVersion")
     // https://kotlinlang.org/api/latest/kotlin.test/
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
@@ -62,20 +61,20 @@ dependencies {
     ksp("com.github.serras.inikio:inikio-ksp:$inikioVersion")
 
     // https://github.com/woltapp/arrow-detekt-rules
-    detektPlugins("com.wolt.arrow.detekt:rules:0.4.0")
+    detektPlugins("com.wolt.arrow.detekt:rules:$arrowDetektVersion")
     // for list, look at https://repo.maven.apache.org/maven2/io/gitlab/arturbosch/detekt
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-libraries:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-complexity:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-coroutines:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-documentation:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-empty:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-exceptions:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-naming:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-performance:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-errorprone:1.23.3")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-style:1.23.3")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-libraries:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-complexity:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-coroutines:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-documentation:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-empty:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-exceptions:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-naming:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-performance:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-errorprone:$detektVersion")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-style:$detektVersion")
 }
 
 tasks {
@@ -92,6 +91,7 @@ tasks {
     named("compileKotlin") {
         finalizedBy("detektMain")
     }
+
     // This ensures that detektTest
     named("compileTestKotlin") {
         finalizedBy("detektTest")
