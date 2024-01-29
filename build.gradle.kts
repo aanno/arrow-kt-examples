@@ -19,10 +19,14 @@ plugins {
 }
 
 val arrowVersion: String by properties
+val quiverVersion: String by properties
 val arrowDetektVersion: String by properties
 val inikioVersion: String by properties
 val kotestVersion: String by properties
 val detektVersion: String by properties
+
+val test by testing.suites.existing(JvmTestSuite::class)
+val defaultTests = test
 
 group = "com.github.aanno.arrowkt"
 version = "1.0-SNAPSHOT"
@@ -47,6 +51,7 @@ dependencies {
     implementation("io.arrow-kt:arrow-core")
     implementation("io.arrow-kt:arrow-fx-coroutines")
     implementation("io.arrow-kt:arrow-optics")
+    implementation("app.cash.quiver:lib:$quiverVersion")
 
     // https://kotest.io/docs/quickstart
     testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
@@ -83,8 +88,14 @@ tasks {
         gradleVersion = "8.5"
     }
 
-    test {
+    withType<Test> {
         useJUnitPlatform()
+    }
+
+    // https://docs.gradle.org/8.5/userguide/upgrading_version_8.html#test_task_default_classpath
+    create<Test>("defaultTests") {
+        testClassesDirs = files(defaultTests.map { it.sources.output.classesDirs })
+        classpath = files(defaultTests.map { it.sources.runtimeClasspath })
     }
 
     // This ensures that detektMain (https://detekt.dev/docs/gettingstarted/type-resolution/) is run
