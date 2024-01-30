@@ -1,4 +1,17 @@
 pluginManagement {
+    val mavenUrl1: String by settings
+    val mavenUrl2: String  by settings
+
+    repositories {
+        // gradlePluginPortal()
+        maven {
+            url = uri(mavenUrl1)
+        }
+        maven {
+            url = uri(mavenUrl2)
+        }
+    }
+
     plugins {
         id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
         kotlin("jvm") version "1.9.22"

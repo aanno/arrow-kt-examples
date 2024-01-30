@@ -3,6 +3,11 @@ import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
+group = "com.github.aanno.arrowkt"
+version = "0.0.1-SNAPSHOT"
+description = "arrow-kt-examples"
+java.sourceCompatibility = JavaVersion.VERSION_17
+
 plugins {
     // https://github.com/JLLeitschuh/ktlint-gradle
     // https://pinterest.github.io/ktlint/latest/
@@ -28,13 +33,20 @@ val detektVersion: String by properties
 val test by testing.suites.existing(JvmTestSuite::class)
 val defaultTests = test
 
-group = "com.github.aanno.arrowkt"
-version = "1.0-SNAPSHOT"
+val mavenUrl1: String by properties
+val mavenUrl2: String by properties
 
 repositories {
-    mavenCentral()
+    // mavenLocal()
+    // mavenCentral()
     // inikio
     maven(url = "https://jitpack.io")
+    maven {
+        url = uri(mavenUrl1)
+    }
+    maven {
+        url = uri(mavenUrl2)
+    }
 }
 
 idea {
@@ -116,8 +128,8 @@ tasks {
 }
 
 kotlin {
-    // should be 21 but detekt supports only 20 (tp)
-    jvmToolchain(20)
+    // should be 21 but detekt supports only 17 (tp)
+    jvmToolchain(17)
     // https://kotlinlang.org/docs/ksp-quickstart.html#make-ide-aware-of-generated-code
     sourceSets.main {
         kotlin.srcDir("build/generated/ksp/main/kotlin")
