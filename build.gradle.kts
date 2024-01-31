@@ -39,14 +39,17 @@ val mavenUrl2: String by properties
 repositories {
     // mavenLocal()
     // mavenCentral()
-    // inikio
-    maven(url = "https://jitpack.io")
     maven {
         url = uri(mavenUrl1)
     }
     maven {
         url = uri(mavenUrl2)
     }
+    flatDir {
+        dir("lib")
+    }
+    // inikio - should be at end
+    // maven(url = "https://jitpack.io")
 }
 
 idea {
@@ -74,7 +77,7 @@ dependencies {
 
     ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion")
 
-    implementation("com.github.serras.inikio:inikio-core:$inikioVersion")
+    implementation("com.github.serras.inikio:inikio-core-jvm:$inikioVersion")
     ksp("com.github.serras.inikio:inikio-ksp:$inikioVersion")
 
     // https://github.com/woltapp/arrow-detekt-rules
