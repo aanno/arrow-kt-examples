@@ -59,6 +59,14 @@ idea {
     }
 }
 
+// Strange HACK needed to use inikio-ksp:0.2-SNAPSHOT (tp)
+val ksp by configurations.named("ksp") {
+    extendsFrom(configurations.implementation.get())
+    dependencies {
+        implementation("com.squareup:kotlinpoet-ksp:1.16.0")
+    }
+}
+
 dependencies {
     // api(kotlin("stdlib"))
 
