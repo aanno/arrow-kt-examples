@@ -3,7 +3,6 @@ package com.github.aanno.arrowkt
 import arrow.core.raise.Raise
 import arrow.core.raise.ensure
 import arrow.core.raise.fold
-import io.kotest.assertions.fail
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 
