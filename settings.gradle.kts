@@ -1,6 +1,6 @@
 pluginManagement {
     val mavenUrl1: String by settings
-    val mavenUrl2: String  by settings
+    val mavenUrl2: String by settings
 
     repositories {
         // gradlePluginPortal()

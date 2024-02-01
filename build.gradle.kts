@@ -221,7 +221,7 @@ tasks.withType<Detekt>().configureEach {
     }
 }
 tasks.withType<Detekt>().configureEach {
-    jvmTarget = "20"
+    jvmTarget = "17"
     // jdkHome.set(file("path/to/jdkHome"))
     // exclude ksp generated code (inikio)
     val mainKotlin = fileTree("src/main/kotlin").include("**/*.kt", "**/*.kts")
@@ -232,7 +232,7 @@ tasks.withType<Detekt>().configureEach {
     source(testKotlin)
 }
 tasks.withType<DetektCreateBaselineTask>().configureEach {
-    jvmTarget = "20"
+    jvmTarget = "17"
 }
 // https://detekt.dev/docs/introduction/baseline
 val detektProjectBaseline by tasks.registering(DetektCreateBaselineTask::class) {
