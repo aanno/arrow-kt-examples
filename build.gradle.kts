@@ -82,6 +82,17 @@ dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-style:$detektVersion")
 }
 
+// https://github.com/JLLeitschuh/ktlint-gradle/issues/751
+// https://github.com/JLLeitschuh/ktlint-gradle/issues/746
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    filter {
+        exclude { element ->
+            val path = element.file.path
+            path.contains("\\generated\\") || path.contains("/generated/")
+        }
+    }
+}
+
 tasks {
     wrapper {
         distributionType = Wrapper.DistributionType.ALL
