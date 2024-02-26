@@ -8,10 +8,17 @@ plugins {
     // https://pinterest.github.io/ktlint/latest/
     id("org.jlleitschuh.gradle.ktlint")
     kotlin("jvm")
+    // https://github.com/google/ksp
     id("com.google.devtools.ksp")
     id("io.gitlab.arturbosch.detekt")
     id("jvm-test-suite")
     id("io.kotest")
+    // https://github.com/ben-manes/gradle-versions-plugin
+    // gradle dependencyUpdates -Drevision=release -DoutputFormatter=json,xml,html
+    id("com.github.ben-manes.versions")
+    // https://github.com/patrikerdes/gradle-use-latest-versions-plugin
+    // gradle useLatestVersions
+    id("se.patrikerdes.use-latest-versions")
     // needs kotlin version 1.8.10 (1.8.x)
     // id("io.arrow-kt.analysis.kotlin")
     idea
